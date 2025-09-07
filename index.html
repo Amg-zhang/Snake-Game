@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 游戏标题 -->
+    <h1>🐍 贪吃蛇游戏</h1>
+    
+    <!-- 分数显示区域 -->
+    <div id="scoreBoard">
+        <div>得分: <span id="score">0</span></div>
+        <div>最高分: <span id="highScore">0</span></div>
+    </div>
+    
+    <!-- 特殊效果状态显示 -->
+    <div id="effectsDisplay" style="display: none;">
+        <div id="speedBoostEffect" class="effect-item">⚡ 加速中</div>
+        <div id="slowDownEffect" class="effect-item">🐌 减速中</div>
+        <div id="doublePointsEffect" class="effect-item">💎 双倍积分</div>
+        <div id="invincibleEffect" class="effect-item">🛡️ 无敌状态</div>
+    </div>
+    
+    <!-- 游戏区域容器 -->
+    <div id="gameContainer">
+        <!-- 游戏画布 - 这里将绘制贪吃蛇和食物 -->
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        
+        <!-- 游戏内按钮 - 显示在画布中央 -->
+        <div id="gameStartOverlay">
+            <button id="startBtn">开始游戏</button>
+            <button id="pauseBtn" style="display: none;">暂停</button>
+        </div>
+    </div>
+    
+    <!-- 游戏控制按钮 - 在画布下方 -->
+    <div id="controls">
+        <button id="resetBtn">重新开始</button>
+    </div>
+    
+    <!-- 游戏说明 -->
+    <div id="instructions">
+        <p>使用方向键 ↑ ↓ ← → 或 WASD 控制蛇的移动</p>
+        <p>吃到红色食物可以增长并得分</p>
+        <p>不要撞到墙壁或自己的身体！</p>
+    </div>
+    
+    <!-- 游戏结束提示框 -->
+    <div id="gameOver" style="display: none;">
+        <h2>🎯 游戏结束！</h2>
+        <p>最终得分: <span id="finalScore">0</span></p>
+        <button onclick="resetGame()">再玩一次</button>
+    </div>
+    
+    <!-- 引入游戏逻辑脚本 -->
+    <script src="game.js"></script>
+</body>
+</html>

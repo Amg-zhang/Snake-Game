@@ -1,0 +1,299 @@
+/* 全局样式设置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 页面主体样式 */
+body {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 游戏标题样式 */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* 标题发光动画效果 */
+@keyframes glow {
+    from {
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.2);
+    }
+    to {
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.4);
+    }
+}
+
+/* 分数显示板样式 */
+#scoreBoard {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+#scoreBoard div {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* 特殊效果状态显示样式 */
+#effectsDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 400px;
+    margin-bottom: 15px;
+}
+
+.effect-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    animation: effectPulse 1.5s ease-in-out infinite alternate;
+    display: none; /* 默认隐藏，激活时显示 */
+}
+
+/* 效果项闪烁动画 */
+@keyframes effectPulse {
+    from {
+        opacity: 0.7;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+/* 不同效果的特色颜色 */
+#speedBoostEffect {
+    border-color: #ecc94b;
+    color: #ecc94b;
+}
+
+#slowDownEffect {
+    border-color: #4299e1;
+    color: #4299e1;
+}
+
+#doublePointsEffect {
+    border-color: #9f7aea;
+    color: #9f7aea;
+}
+
+#invincibleEffect {
+    border-color: #68d391;
+    color: #68d391;
+}
+
+/* 游戏区域容器样式 */
+#gameContainer {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+/* 游戏画布样式 */
+#gameCanvas {
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    background-color: #2d3748;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    display: block;
+}
+
+/* 游戏内覆盖层 - 用于显示开始按钮 */
+#gameStartOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+}
+
+/* 游戏内按钮特殊样式 */
+#gameStartOverlay button {
+    background: linear-gradient(45deg, #38a169, #68d391);
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    border-radius: 30px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+    animation: gameButtonPulse 2s ease-in-out infinite alternate;
+}
+
+#gameStartOverlay button:hover {
+    background: linear-gradient(45deg, #68d391, #38a169);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+/* 游戏内按钮脉动动画 */
+@keyframes gameButtonPulse {
+    from {
+        box-shadow: 0 6px 25px rgba(0,0,0,0.4), 0 0 0 0 rgba(56, 161, 105, 0.4);
+    }
+    to {
+        box-shadow: 0 6px 25px rgba(0,0,0,0.4), 0 0 0 15px rgba(56, 161, 105, 0);
+    }
+}
+
+/* 控制按钮容器样式 */
+#controls {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* 按钮基础样式 */
+button {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* 按钮悬停效果 */
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+}
+
+/* 按钮点击效果 */
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* 暂停按钮特殊样式 */
+#pauseBtn {
+    background: linear-gradient(45deg, #feca57, #ff9ff3);
+}
+
+#pauseBtn:hover {
+    background: linear-gradient(45deg, #ff9ff3, #feca57);
+}
+
+/* 游戏说明样式 */
+#instructions {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-bottom: 20px;
+}
+
+#instructions p {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* 游戏结束弹窗样式 */
+#gameOver {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+    border: 2px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    animation: slideIn 0.5s ease-out;
+}
+
+/* 弹窗滑入动画 */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+#gameOver h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+#gameOver p {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+/* 响应式设计 - 适配手机屏幕 */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    #gameCanvas {
+        width: 300px;
+        height: 300px;
+    }
+    
+    #scoreBoard {
+        width: 300px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    #instructions {
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+    
+    #gameOver {
+        padding: 30px;
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+}
